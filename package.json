@@ -1,0 +1,17 @@
+{
+  "dependencies": {
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "nodemon": "^2.0.19"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "name": "connex_credit_activation",
+  "version": "1.0.0",
+  "description": "a simple webpage to allow their customers to activate their credit card. ",
+  "main": "server.js",
+  "devDependencies": {},
+  "author": "diogenesoftoronto",
+  "license": "ISC"
+}
