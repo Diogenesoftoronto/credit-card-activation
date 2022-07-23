@@ -11,8 +11,9 @@ app.set('views', path.join(__dirname, 'views'));
 
 app.set('view engine', 'ejs');
 
-async function isCardActivated(req, res) {
-  const status = await axios.post(req.body)
+async function isCardActivated(req) {
+  const status = await axios.post('https://us-west2-connexinterview.cloudfunctions.net/cardactivation', req.body)
+  console.log(status)
   return status
 }
 
@@ -21,7 +22,7 @@ app.get('/', (req, res) => {
 })
 
 app.post('/activation', (req, res) => {
-  result = isCardActivated(req, res) ? 'success.ejs' : 'failure.ejs' 
+  result = isCardActivated(req) ? 'success.ejs' : 'failure.ejs' 
   res.render(result)
 })
 
