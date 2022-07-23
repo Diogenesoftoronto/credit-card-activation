@@ -15,7 +15,7 @@ async function isCardActivated(req, res) {
   const status = await axios.post(req.body)
   return status
 }
-app.use('/bulma', express.static(__dirname + '/node_modules/bulma/css/'));
+
 app.get('/', (req, res) => {
   res.render('index.ejs')
 })
