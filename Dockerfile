@@ -1,4 +1,4 @@
-FROM NODE:17.5.0-alpine
+FROM node:17.5.0-alpine
 
 WORKDIR /app
 
@@ -8,7 +8,7 @@ RUN npm install
 
 COPY . .
 
-ENV PORT=1984 AUTHKEY=lol
+ENV PORT=1984 AUTHKEY=A123JDKn12l123@11saazdeop102
 
 EXPOSE 1984
 
