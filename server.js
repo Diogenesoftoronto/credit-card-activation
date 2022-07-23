@@ -6,13 +6,14 @@ const port = process.env.PORT || 3000
 const axios = require('axios')
 const path = require('path')
 const serveStatic = require('serve-static')
-const bodyParser = require('body-parser');
-app.use(bodyParser.urlencoded({ extended: true }));
+// const bodyParser = require('body-parser');
 //  config for rendering with ejs
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 // config for axios headers
 axios.defaults.headers.post['Authkey'] = process.env.AUTHKEY
+
+app.use(express.urlencoded({ extended: true }));
 
 // convert to async await syntax and pass values to render in post request
 async function isCardActivated(req, data) {
@@ -42,5 +43,5 @@ app.post('/activation', (req, res) => {
 })
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
+  console.log(`Credit app listening on port ${port}`)
 })
