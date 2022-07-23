@@ -7,18 +7,41 @@
   <title>Failure</title>
 </head>
 <body>
+  <section class="hero is-medium is-success ">
+    <div class="hero-body">
+      <p class="title">
+        Connex Credit Activation Portal
+      </p>
+     <p class="subtitle">
+        bringing you credit cards at 🌩️blazingly🌩️ fast speeds
+      </p> 
+    </div>
+  </section>
   <section class="">
     <img class=""/>
-    <p class="">Failure</p>
+    <p class=""><%- locals.status -%></p>
     <img class=""/>
   </section>
   <section class="">
     <p class="">Unfortunately your card: <%- locals.cardnumber -%> is not valid!</p>
+    <div class=""><p>Server Response Card:</p> <p class="">
+    <p class=""><%- locals.responsecode -%></p>
+    <p class=""><%- locals.message -%></p>
+    </p></div>
+    
     <p class="">you can't go connexing all aroung the world!</p>
     <img class=""/>
   </section>
   <section class="">
-    <button class="">Try Again</button>
+    <a class="button" href="/">Try Again</a>
   </section>
+  <footer class="footer">
+    <div class="content has-text-centered">
+      <p>
+        <strong>Connex Credit Activation Portal</strong> by <a href="https://jgthms.com">Diogenes of Toronto</a>. The source code is licensed
+        <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. 
+      </p>
+    </div>
+  </footer>
 </body>
 </html>
