@@ -3,15 +3,32 @@
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>My first Bulma website</title>
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.5.1/css/bulma.min.css"/>
 </head>
 <body>
+  <section class="hero is-medium is-success ">
+    <div class="hero-body">
+      <p class="title">
+        Connex Credit Activation Portal
+      </p>
+     <p class="subtitle">
+        bringing you credit cards at 🌩️blazingly🌩️ fast speeds
+      </p> 
+    </div>
+  </section>
+  <h1></h1>
+  
   <form method="post" action="/activation">
-    <input type="number" name="cardnumber">
-    <input type="number" name="csv">
-    <input type="number" name="expirydata">
-    <input type="tel" name="phonenumber">
+    <label for="cardnumber">Card Number:</label>
+    <input type="number" name="cardnumber" required>
+    <label for="csv">CSV:</label>
+    <input type="number" name="csv" required>
+    <label for="expirydata">Expiry Date:</label>
+    <input type="number" required name="expirydata">
+    <label for="phonenumber">Phone Number:</label>
+    <input type="tel" required name="phonenumber">
     <input type="submit" value="Activate">
   </form>
 </body>
