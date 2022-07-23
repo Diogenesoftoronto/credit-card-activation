@@ -7,6 +7,16 @@
   <title>Success</title>
 </head>
 <body>
+  <section class="hero is-medium is-success ">
+    <div class="hero-body">
+      <p class="title">
+        Connex Credit Activation Portal
+      </p>
+     <p class="subtitle">
+        bringing you credit cards at 🌩️blazingly🌩️ fast speeds
+      </p> 
+    </div>
+  </section>
   <section class="">
     <img class=""/>
     <p class="">Success</p>
@@ -14,11 +24,23 @@
   </section>
   <section class="">
     <p class=""> >Congrats your card: <%- locals.cardnumber -%> has been activated!</p>
+    <div class=""><p>Server Response Card:</p> <p class="">
+      <p class=""><%- locals.responsecode -%></p>
+      <p class=""><%- locals.message -%></p>
+      </p></div>
     <p class=""> >you are now ready to go connexing with people all over the world!</p>
     <img class=""/>
   </section>
   <section class="">
-    <button class="">Activate a new card</button>
+    <a class="button" href="/" >Activate a new card</a>
   </section>
+  <footer class="footer">
+    <div class="content has-text-centered">
+      <p>
+        <strong>Connex Credit Activation Portal</strong> by <a href="https://jgthms.com">Diogenes of Toronto</a>. The source code is licensed
+        <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. 
+      </p>
+    </div>
+  </footer>
 </body>
 </html>
