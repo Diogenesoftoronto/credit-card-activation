@@ -14,12 +14,19 @@ app.set('view engine', 'ejs');
 // config for axios headers
 axios.defaults.headers.post['Authkey'] = process.env.AUTHKEY
 
-async function isCardActivated(data) {
-  const status = await axios.post('https://us-west2-connexinterview.cloudfunctions.net/cardactivation', data)
-  .catch((err)=>console.log("error:", "bad guy"))
-  .then((status)=>
-    console.log("status: nooo"))
-  return status
+// convert to async await syntax and pass values to render in post request
+async function isCardActivated(req, data) {
+  try {
+    res = await axios.post('https://us-west2-connexinterview.cloudfunctions.net/cardactivation', data)
+    // console.log("response:", res.response.data, res.response.status,)
+    const values = {cardnumber: req.body.cardnumber, status: res.response.status, message: res.response.data.msg, responsecode: res.response.data.responsecode}
+    return ['success.ejs', values]
+  }
+  catch (err) {
+    // console.log("error:", err.response.data, err.response.status,)
+    const values = {cardnumber: req.body.cardnumber, status: err.response.status, message: err.response.data.msg, responsecode: err.response.data.responsecode}
+    return ['failure.ejs', values]
+  }
 }
 
 app.get('/', (req, res) => {
@@ -28,18 +35,10 @@ app.get('/', (req, res) => {
 
 app.post('/activation', (req, res) => {
   const data = JSON.stringify(req.body)
-  console.log(data)
-  axios.post('https://us-west2-connexinterview.cloudfunctions.net/cardactivation', data)
-  .then((res) =>{
-   console.log("status: hello", res) 
-   res.render('success.ejs', {cardnumber: req.body.cardnumber, status: res.response.status, message: res.response.data.msg, responsecode: res.response.data.responsecode})
-  }
-    )
-    .catch((err)=>{console.log("error:", err.response.data, err.response.status,)
-  
-    res.render('failure.ejs', {cardnumber: req.body.cardnumber, status: err.response.status, message: err.response.data.msg, responsecode: err.response.data.responsecode})  
-  })
-  
+  const returned = isCardActivated(req, data)
+  returned.then((result) => {
+   const [template, values] = result
+    res.render(template, values)})
 })
 
 app.listen(port, () => {
