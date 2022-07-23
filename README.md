@@ -1,5 +1,5 @@
 # credit-card-activation
- A simple webpage to allow their customers to activate their credit card.
+A simple webpage to allow their customers to activate their credit card.
 ## About 
 ### Credit Card Activation
 The app allows you to activate your credit card. You can activate your credit card by entering the credit card number and the expiration date. The expiration date should be in the format of MM/YY.
