@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.5.1/css/bulma.min.css"/>
   <title>Failure</title>
 </head>
 <body>
@@ -17,23 +18,21 @@
       </p> 
     </div>
   </section>
-  <section class="">
-    <img class=""/>
-    <p class=""><%- locals.status -%></p>
-    <img class=""/>
+  <section class="section is-small has-background-grey-dark card">
+    <img class="card-image" src="image/Connex-Logo_2019.png"/>
+    <p class="is-family-monospace is-size-1 has-text-centered card-content"><%- locals.status -%></p>
   </section>
-  <section class="">
+  <section class="section field">
     <p class="">Unfortunately your card: <%- locals.cardnumber -%> is not valid!</p>
-    <div class=""><p>Server Response Card:</p> <p class="">
-    <p class=""><%- locals.responsecode -%></p>
-    <p class=""><%- locals.message -%></p>
-    </p></div>
-    
+    <div class="control box "><p class="title has-text-centered">Server Response Card</p> 
+    <p class="has-text-centered"><%- locals.responsecode -%></p>
+    <p class="has-text-centered is-uppercase"><%- locals.message -%></p>
+    </div>
     <p class="">you can't go connexing all aroung the world!</p>
     <img class=""/>
   </section>
   <section class="">
-    <a class="button" href="/">Try Again</a>
+    <a class="button is-success" href="/">Try Again</a>
   </section>
   <footer class="footer">
     <div class="content has-text-centered">
