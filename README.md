@@ -4,14 +4,14 @@ A simple webpage to allow their customers to activate their credit card.
 ### Credit Card Activation
 The app allows you to activate your credit card. You can activate your credit card by entering the credit card number and the expiration date. The expiration date should be in the format of MM/YY.
 ### Motivations and Points of Progress
-I built this app for a take home interview challenge for the company connex. You can vist the site to try it out yourself here. You can also download the docker image here if you want a running instance of the app to deploy in a swarm. 😎
+I built this app for a take home interview challenge for the company connex. You can vist the [site](https://calm-meadow-88278.herokuapp.com/) to try it out yourself here. You can also download the docker image here if you want a running instance of the app to deploy in a swarm. 😎
 
 I focused more on functionality and scalability with this app than on styling as the position is for a backend one. The app is written in JS, I could add to this app by writing it on typescript to preserve type safety or I could do have made it with gin on golang. 
 ## Setup
 There's multiple options to setup the application and get it running. You can setup only on your local machine or you can pull the image from docker hub and get things running that way. (install from npm may be coming soon).
 
 ### Docker Hub
-First, you'll want to pull the image from the Docker Hub website. This requires you to have docker installed on your machine which you can find the instructions to on the docker site.
+First, you'll want to pull the image from the Docker Hub [website](https://hub.docker.com/repository/docker/diogenesoftoronto/connex-credit-activation). This requires you to have docker installed on your machine which you can find the instructions to on the docker site.
 
 After pulling the image from the Docker Hub, you'll need to run the following command to get the app running.
 
@@ -46,7 +46,7 @@ NOTE: You'll need to have node and npm installed on your machine. congrats on th
 That is all you need to do to get the app running.
 
 ## Credits
-This app was built by [@diogenesoftoronto](https://twitter.com/chocosoydev) for the connex company.
+This app was built by [@diogenesoftoronto](https://www.github.com/diogenesoftoronto/) for the connex company.
 
 ## License
 This app is licensed under the MIT license.
