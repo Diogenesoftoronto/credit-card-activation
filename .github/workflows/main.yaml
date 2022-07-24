@@ -16,7 +16,7 @@ jobs:
           npm install
       - name: Build Docker Image
         run: |
-        docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+        docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
       - name: Test Application
         run: |
           npm run test
@@ -26,6 +26,6 @@ jobs:
       - name: Push Docker Image
         run: |
           npm run docker:push
-      - name: Deploy Application
-        run: |
-          npm run Heroku:ready
+      # - name: Deploy Application
+      #   run: |
+      #     npm run Heroku:ready

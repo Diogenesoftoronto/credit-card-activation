@@ -14,11 +14,10 @@
     "docker:build": "docker build -t diogenesoftoronto/connex-credit-activation:1.0 .",
     "docker:push": "docker push diogenesoftoronto/connex-credit-activation:1.0",
     "docker:run": "docker run -p 1984:3000 diogenesoftoronto/connex-credit-activation:1.0",
-    "docker:ready": "docker build -t diogenesoftoronto/connex-credit-activation:1.0 . && docker push diogenesoftoronto/connex-credit-activation:1.0 && docker run -p 1984:3000 diogenesoftoronto/connex-credit-activation:1.0",
-    "Heroku:build": "Heroku build",
-    "Heroku:push": "npx Heroku push",
-    "Heroku:run": "npx Heroku run",
-    "Heroku:ready": "npx Heroku build && npx Heroku push && npx Heroku run"
+    "docker:ready": "docker build -t diogenesoftoronto/connex-credit-activation:1.0 . && docker push diogenesoftoronto/connex-credit-activation:1.0 ",
+    "Heroku:push": "npx heroku container:push web --app=calm-meadow-88278",
+    "Heroku:run": "npx heroku container:release web --app=calm-meadow-88278",
+    "Heroku:ready": " npx heroku push && npx heroku run && npx heroku open  --app=calm-meadow-88278"
   },
   "name": "connex_credit_activation",
   "version": "1.0.0",
