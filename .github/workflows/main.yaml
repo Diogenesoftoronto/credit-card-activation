@@ -1,10 +1,28 @@
-name: example
+name: Connex Credit Activation Portal CI->CD
 
-on: push
-
+on:
+  push:
+    branches: 
+      - main
 jobs:
-  job_1:
+  build:
     runs-on: ubuntu-latest
+
     steps:
-      - name: My first step
-        run: echo This is the first step of my first job.
+      - uses: actions/checkout@v3
+
+      - name: Install Dependencies
+        run: |
+          npm install
+      - name: Test Application
+        run: |
+          npm run test
+      - name: Build Docker Image
+        run: |
+          npm run docker:build
+      - name: Push Docker Image
+        run: |
+          npm run docker:push
+      - name: Deploy Application
+        run: |
+          npm run Heroku:ready
