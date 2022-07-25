@@ -1,10 +1,15 @@
-const spawnNotification = (title, options) => {
+const spawnNotification = (title, options, actions) => {
   if (!("Notification" in window)) {
     console.log("This browser does not support desktop notification");
   }
   else if (Notification.permission == "granted") {
    const notification = new Notification(title, options);
-
+    // check if actions are provided and calls the ac tion functions in the actions array
+    if (actions) {
+      actions.forEach(action => {
+        action(notification);
+      });
+    }
    notification.addEventListener('notificationclick', function(event) {
      console.log('On notification click: ', event.notification.tag);
      event.notification.close();
