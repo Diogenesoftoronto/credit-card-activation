@@ -36,7 +36,7 @@ async function isCardActivated(req, data) {
   }
   catch (err) {
     
-    const values = {cardnumber: req.body.cardnumber, status: err.response.status, message: err.response.data.msg, responsecode: err.response.data.responsecode}
+    const values = {cardnumber: req.body.cardnumber, status: err.status, message: err.data.msg, responsecode: err.data.responsecode}
     return ['failure.ejs', values]
   }
 }
