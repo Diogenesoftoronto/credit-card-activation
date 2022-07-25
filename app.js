@@ -3,7 +3,7 @@ const express = require('express')
 require('dotenv').config()
 const axios = require('axios')
 const path = require('path')
-const logger = require('morgan');
+// const logger = require('morgan');
 const serveStatic = require('serve-static')
 
 const API_URL = 'https://us-west2-connexinterview.cloudfunctions.net/cardactivation'
@@ -15,7 +15,7 @@ const app = module.exports = express()
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 // log
-app.use(logger('dev'));
+// if (!module.parent) app.use(logger('dev'));
 
 // config for axios headers
 axios.defaults.headers.post['Authkey'] = process.env.AUTHKEY
