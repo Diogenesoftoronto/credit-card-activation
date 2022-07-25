@@ -6,39 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.5.1/css/bulma.min.css"/>
   <title>Failure</title>
-  <script defer >
-    if (Notification.permission === 'denied') {
-      Notification.requestPermission()
-      .then(permission => spawnNotification("yollooo", "image/Connex-Logo_2019.png", permission, 'helloworld', permission)
-      )
-  const spawnNotification = (body, icon, tag, title, permission) => {
-  const options = {
-      body: body,
-      icon: icon,
-      tag: tag
-  }
-  if (Notification.permission == 'granted') {const notification = new Notification(title, options)}
-  return "sucks to be you";
-  
-}
-
-notification.addEventListener('notificationclick', function(event) {
-  console.log('On notification click: ', event.notification.tag);
-  event.notification.close();
-
-  // This looks to see if the current is already open and
-  // focuses if it is
-  event.waitUntil(clients.matchAll({
-    type: "window"
-  }).then(function(clientList) {
-    for (const client of clientList) {
-      if (client.url == '/' && 'focus' in client)
-        return client.focus();
-    }
-    if (clients.openWindow)
-      return clients.openWindow('/');
-  }));
-});
+  <script defer src="">
   </script>
 </head>
 <body>
