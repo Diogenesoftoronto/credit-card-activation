@@ -4,8 +4,7 @@ const spawnNotification = (title, options) => {
   }
   else if (Notification.permission == "granted") {
    const notification = new Notification(title, options);
-  //  select the notification using querySelector
-  //  let notification = document.querySelector('.notification')
+
    notification.addEventListener('notificationclick', function(event) {
      console.log('On notification click: ', event.notification.tag);
      event.notification.close();
@@ -30,10 +29,10 @@ const spawnNotification = (title, options) => {
 const playSound = (sound) => {
   const audio = new Audio(sound)
   audio.play()
-  // stop sound after 10 seconds
+  // stop sound after 3 seconds
   setTimeout(() => {
     audio.pause()
-  }, 10000)
+  }, 3000)
 }
 
 // play a sound when a notification is received
@@ -77,12 +76,12 @@ form.addEventListener("submit", (e) => {
       // spawn notification from request if granted permission
       if (Notification.permission == 'granted') {
       // play two different sounds depending on the response from the server
-        if (res.responsecode === 100) {
-          playSound('sounds/tailwind.mp3')
-        }
-        else if (res.responsecode === 101) {
-          playSound('sounds/Hidden Depth.mp3')
-        }
+      if (res.responsecode === 100) {
+        playSound('sounds/tailwind.mp3')
+      }
+      else if (res.responsecode === 101) {
+        playSound('sounds/Hidden Depth.mp3')
+      }
       spawnNotification('Credit Card Activated', {
         body: 
         `Your credit card: ${cardnumber}. 
@@ -91,7 +90,7 @@ form.addEventListener("submit", (e) => {
         response status is: ${res.status}.`,
         icon: 'images/giphy.gif'
         })
-        console.log(res)
+        // console.log(res)
       }
     })
     .catch((err)=>{
