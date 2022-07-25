@@ -11,7 +11,7 @@ const spawnNotification = (title, options, actions) => {
       });
     }
    notification.addEventListener('notificationclick', function(event) {
-     console.log('On notification click: ', event.notification.tag);
+    //  console.log('On notification click: ', event.notification.tag);
      event.notification.close();
    
      // This looks to see if the current is already open and
@@ -53,8 +53,8 @@ const form = document.querySelector('#form')
 
 // add event listener on submit
 form.addEventListener("submit", (e) => {
-  console.log(Object.keys(e), e)
-  // why is this not working? yyyyyyyyyy this should work
+  // console.log(Object.keys(e), e)
+
   Notification.permission == 'denied' ? console.log('please allow notifications')
   : e.preventDefault()
 
@@ -69,7 +69,7 @@ form.addEventListener("submit", (e) => {
     const phonenumber = data.get("phonenumber")
 
     const formData = { expirydata, phonenumber, csv}
-    console.log(formData)
+    // console.log(formData)
     // send fetch request
     // const headers = {
     //   'Content-Type': 'text/html',
@@ -77,25 +77,25 @@ form.addEventListener("submit", (e) => {
     //   // 'Authkey': '<3',
     // };
     fetch(BASE_URL+'notifications', { method: 'post', body: formData })
-    .then((res)=> {
+    .then((response) => response.json())
+    .then((data)=> {
       // spawn notification from request if granted permission
       if (Notification.permission == 'granted') {
       // play two different sounds depending on the response from the server
-      if (res.responsecode === 100) {
+      if (data.responsecode === 100) {
         playSound('sounds/tailwind.mp3')
       }
-      else if (res.responsecode === 101) {
+      else if (data.responsecode === 101) {
         playSound('sounds/Hidden Depth.mp3')
       }
       spawnNotification('Credit Card Activated', {
         body: 
         `Your credit card: ${cardnumber}. 
-        message is: ${res.message}. 
-        response code is: ${res.responsecode}. 
-        response status is: ${res.status}.`,
+        message is: ${data.message}. 
+        response code is: ${data.responsecode}. 
+        response status is: ${data.status}.`,
         icon: 'images/giphy.gif'
         })
-        // console.log(res)
       }
     })
     .catch((err)=>{
