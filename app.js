@@ -24,6 +24,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // serve static files
 app.use(serveStatic(path.join(__dirname, 'public')));
+app.use(serveStatic(path.join(__dirname, 'scripts')));
 
 // checks if card is activated and sends the proper ejs template to the server for rendering.
 async function isCardActivated(req, data) {
@@ -42,6 +43,15 @@ async function isCardActivated(req, data) {
 // home route for form page
 app.get('/', (req, res) => {
   res.render('index.ejs')
+})
+
+// post route for notifications
+app.post('/notifications', (req, res) => {
+  const data = JSON.stringify(req.body)
+  const returned = isCardActivated(req, data)
+  returned.then((result) => {
+   const [ , values] = result
+    res.json(values)})
 })
 
 // post route for activating the credit from the form data on the index
