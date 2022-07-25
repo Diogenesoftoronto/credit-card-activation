@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.5.1/css/bulma.min.css"/>
   <title>Success</title>
 </head>
 <body>
@@ -17,21 +18,20 @@
       </p> 
     </div>
   </section>
-  <section class="">
-    <img class=""/>
-    <p class="">Success</p>
-    <img />
+  <section class="section is-small has-background-grey-dark card">
+    <img class="card-image" src="image/Connex-Logo_2019.png"/>
+    <p class="is-family-monospace is-size-1 has-text-centered card-content"><%- locals.status -%></p>
   </section>
-  <section class="">
-    <p class=""> >Congrats your card: <%- locals.cardnumber -%> has been activated!</p>
-    <div class=""><p>Server Response Card:</p> <p class="">
-      <p class=""><%- locals.responsecode -%></p>
-      <p class=""><%- locals.message -%></p>
-      </p></div>
-    <p class=""> >you are now ready to go connexing with people all over the world!</p>
+  <section class="section field">
+    <p class="">Congrats your card: <%- locals.cardnumber -%> has been activated!</p>
+    <div class="control box "><p class="title has-text-centered">Server Response Card</p> 
+    <p class="has-text-centered"><%- locals.responsecode -%></p>
+    <p class="has-text-centered is-uppercase"><%- locals.message -%></p>
+    </div>
+    <p class="">you are now ready to go connexing with people all over the world!</p>
     <img class=""/>
   </section>
-  <section class="">
+  <section class="layer">
     <a class="button" href="/" >Activate a new card</a>
   </section>
   <footer class="footer">
