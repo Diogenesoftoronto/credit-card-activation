@@ -15,7 +15,7 @@ const app = module.exports = express()
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 // log
-if (!module.parent) app.use(logger('dev'));
+app.use(logger('dev'));
 
 // config for axios headers
 axios.defaults.headers.post['Authkey'] = process.env.AUTHKEY
