@@ -30,7 +30,7 @@ describe('App Home endpoint', () => {
 	});
 })
 
-
+jest.setTimeout(10000)
 describe('App Activation endpoint', () => {
 	it('should return a 200 status code', async () => {
 		const response = await request
