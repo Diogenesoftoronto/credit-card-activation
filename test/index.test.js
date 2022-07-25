@@ -1,49 +1,55 @@
 // imports
-const axios = require('axios')
-// test server code
-// test front end once server exists
-// test whether form inputs are correct
-// test whether form fields allow you to 
+const app = require('../app') 
+const supertest = require('supertest')
+const request = supertest(app)
+
+
+// Mock values
 const API_URL = 'https://us-west2-connexinterview.cloudfunctions.net/cardactivation'
-const MOCKREQ = {body: { cardnumber: '12345'}}
+const MOCKREQ_fail = {body: {
+  cardnumber:"401214423412340001",
+  csv:"2344",
+  expirydata:"06248",
+  phonenumber:"64712434123"
+}}
+const MOCKREQ_success = {body: {
+  cardnumber:"4012123412340001",
+  csv:"234",
+  expirydata:"0628",
+  phonenumber:"6471234123"
+}}
 const MOCKDATAFAIL = {response: {status: '400', msg: 'activation failed', responsecode: '101'}}
 const MOCKDATASUCCESS = {response: {status: '200', msg: 'activation success', responsecode: '100'}}
-// async function isCardActivated(req, data) {
-//   try {
-//     res = await axios.post(API_URL, data)
-//     const values = {cardnumber: req.body.cardnumber, status: res.response.status, message: res.response.data.msg, responsecode: res.response.data.responsecode}
-//     return ['success.ejs', values]
-//   }
-//   catch (err) {
-//     const values = {cardnumber: req.body.cardnumber, status: err.response.status, message: err.response.data.msg, responsecode: err.response.data.responsecode}
-//     return ['failure.ejs', values]
-//   }
-// }
-// test('the data is mock failure or mock success', done => {
-//   function isCardActivated(MOCKREQ, MOCKDATAFAIL) {
-//     try {
-//       expect(data).toBe(MOCKDATASUCCESS);
-//       done();
-//     } catch (error) {
-//       expect(error).toBe(MOCKDATAFAIL);
-//       done(error);
-//     }
-//   }
-//   fetchData(isCardActivated);
-// });
 
-// test('the data is peanut butter', () => {
-//   return expect(isCardActivated()).resolves.toBe('peanut butter');
-// });
+describe('App Home endpoint', () => {
+	it('should return a 200 status code', async () => {
+		const response = await request
+			.get("/")
 
-// test('the data is peanut butter', () => {
-//   return expect(isCardActivated()).resolves.toBe('peanut butter');
-// });
+		expect(response.statusCode).toBe(200);
+	});
+})
 
-function sum(a, b) {
-  return a + b;
-}
 
-test('adds 1 + 2 to equal 3', () => {
-  expect(sum(1, 2)).toBe(3);
-});
+describe('App Activation endpoint', () => {
+	it('should return a 200 status code', async () => {
+		const response = await request
+			.post('/activation')
+      .send(MOCKREQ_success)
+
+		expect(response.statusCode).toBe(200);
+	});
+})
+
+describe('App Activation endpoint', () => {
+	it('should return a 200 status code', async () => {
+		const response = await request
+			.post('/activation')
+      .send(MOCKREQ_fail)
+
+		expect(response.statusCode).toBe(200);
+	});
+})
+
+
+
