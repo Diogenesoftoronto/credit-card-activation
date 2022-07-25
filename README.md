@@ -1,6 +1,8 @@
 # credit-card-activation
 A simple webpage to allow their customers to activate their credit card.
 ## About 
+### Build Status
+[![Connex Credit Activation Portal CI->CD](https://github.com/Diogenesoftoronto/credit-card-activation/actions/workflows/main.yaml/badge.svg)](https://github.com/Diogenesoftoronto/credit-card-activation/actions/workflows/main.yaml)
 ### Credit Card Activation
 The app allows you to activate your credit card. You can activate your credit card by entering the credit card number and the expiration date. The expiration date should be in the format of MM/YY.
 ### Motivations and Points of Progress
