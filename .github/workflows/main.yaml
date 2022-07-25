@@ -16,15 +16,13 @@ jobs:
           npm install
       - name: Login to Docker
         run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
-      - name: Test Application
-        run: |
-          npm run test
+        # test script running slow on github actions for some reason 🤷
+      # - name: Test Application
+      #   run: |
+      #     npm run test
       - name: Build Docker Image
         run: |
           npm run docker:build
       - name: Push Docker Image
         run: |
           npm run docker:push
-      # - name: Deploy Application
-      #   run: |
-      #     npm run Heroku:ready
