@@ -29,10 +29,12 @@ app.use(serveStatic(path.join(__dirname, 'public')));
 async function isCardActivated(req, data) {
   try {
     res = await axios.post(API_URL, data)
-    const values = {cardnumber: req.body.cardnumber, status: res.response.status, message: res.response.data.msg, responsecode: res.response.data.responsecode}
+    
+    const values = {cardnumber: req.body.cardnumber, status: res.status, message: res.data.msg, responsecode: res.data.responsecode}
     return ['success.ejs', values]
   }
   catch (err) {
+    
     const values = {cardnumber: req.body.cardnumber, status: err.response.status, message: err.response.data.msg, responsecode: err.response.data.responsecode}
     return ['failure.ejs', values]
   }
