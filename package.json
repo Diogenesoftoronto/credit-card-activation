@@ -21,7 +21,7 @@
   },
   "name": "connex_credit_activation",
   "version": "1.0.0",
-  "description": "a simple webpage to allow their customers to activate their credit card. ",
+  "description": "a simple webpage to allow their customers to activate their credit card.",
   "main": "server.js",
   "author": "diogenesoftoronto",
   "license": "ISC",
