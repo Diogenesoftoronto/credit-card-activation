@@ -51,7 +51,8 @@ app.post('/notifications', (req, res) => {
   const returned = isCardActivated(req, data)
   returned.then((result) => {
    const [ , values] = result
-    res.json(values)})
+    res.json(values)
+  })
 })
 
 // post route for activating the credit from the form data on the index
