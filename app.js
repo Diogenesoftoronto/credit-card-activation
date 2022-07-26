@@ -31,6 +31,7 @@ app.use(serveStatic(path.join(__dirname, "scripts")));
 async function isCardActivated(req, data) {
   try {
     res = await axios.post(API_URL, data);
+    console.log("success", req.body);
 
     const values = {
       cardnumber: req.body.cardnumber,
@@ -40,6 +41,7 @@ async function isCardActivated(req, data) {
     };
     return ["success.ejs", values];
   } catch (err) {
+    console.log(req.body);
     const values = {
       cardnumber: req.body.cardnumber,
       status: err.response.status,
@@ -53,10 +55,22 @@ async function isCardActivated(req, data) {
 app.get("/", (req, res) => {
   res.render("index.ejs");
 });
+// post route for activating the credit from the form data on the index
+app.post("/activation", (req, res) => {
+  const data = JSON.stringify(req.body);
+  console.log(Object.keys(req), req.body);
+  const returned = isCardActivated(req, data);
+  returned.then((result) => {
+    const [template, values] = result;
+    res.render(template, values);
+  });
+});
 
+app.use(express.json());
 // post route for notifications
 app.post("/notifications", (req, res) => {
   const data = JSON.stringify(req.body);
+  console.log(data);
   const returned = isCardActivated(req, data);
   returned.then((result) => {
     const [, values] = result;
@@ -64,14 +78,6 @@ app.post("/notifications", (req, res) => {
   });
 });
 
-// post route for activating the credit from the form data on the index
-app.post("/activation", (req, res) => {
-  const data = JSON.stringify(req.body);
-  const returned = isCardActivated(req, data);
-  returned.then((result) => {
-    const [template, values] = result;
-    res.render(template, values);
-  });
-});
+
 
 module.export = app;

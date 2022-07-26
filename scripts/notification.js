@@ -74,12 +74,18 @@ form.addEventListener("submit", (e) => {
       const expirydata = data.get("expirydata");
       const phonenumber = data.get("phonenumber");
 
-      const formData = { expirydata, phonenumber, csv };
-
+      let formData = { cardnumber,expirydata, phonenumber, csv };
+      
+      formData = JSON.stringify(formData);
       console.log(formData);
 
       // send fetch request to server
-      fetch(BASE_URL + "notifications", { method: "post", body: formData })
+      fetch(BASE_URL + "notifications",  {
+        method: "POST",
+      body: formData,
+      headers: {
+          "Content-Type": "application/json"
+      }})
         .then((response) => response.json())
         .then((data) => {
           // spawn notification from request if granted permission
