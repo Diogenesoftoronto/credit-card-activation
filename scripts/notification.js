@@ -61,7 +61,7 @@ form.addEventListener("submit", (e) => {
     ? console.log("please allow notifications")
     : e.preventDefault();
   // change the button to display the loading spinner
-  submitButton.setAttribute("disabled");
+  submitButton.setAttribute("disabled", true);
   submitButton.setAttribute("class", "is-loading");
   // get the form data
   if (Notification.permission !== "denied") {
@@ -90,11 +90,11 @@ form.addEventListener("submit", (e) => {
             } else if (data.responsecode === 101) {
               playSound("sounds/Hidden Depth.mp3");
             }
-            spawnNotification("Credit Card Activated", {
-              body: `Your credit card: ${cardnumber}. 
-        message is: ${data.message}. 
-        response code is: ${data.responsecode}. 
-        response status is: ${data.status}.`,
+            spawnNotification("Credit Card Status", {
+              body: `Your credit card: ****-****-****-${cardnumber.substr(-4)}. 
+              Your ${data.message}. 
+              response code: ${data.responsecode}. 
+              status: ${data.status}.`,
               icon: "images/giphy.gif",
             });
           }
