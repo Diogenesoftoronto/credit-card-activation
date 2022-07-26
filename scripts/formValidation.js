@@ -24,10 +24,12 @@ csvInput.addEventListener("input", () => {
 
 csvInput.addEventListener("invalid", () => {
   if (csvInput.value === "") {
-    csvInput.setCustomValidity("Enter your username!");
-  } else {
+    csvInput.setCustomValidity("Enter your csv!");
+    // check if csv contains non numbers
+
+  } else if (csvInput.value.match(/[^0-9]/g)) {
     csvInput.setCustomValidity(
-      "Usernames can only contain upper and lowercase letters. Try again!"
+      "Your csv can only contain three numbers. Try again!"
     );
   }
 });
