@@ -34,10 +34,10 @@ const spawnNotification = (title, options, actions) => {
 const playSound = (sound) => {
   const audio = new Audio(sound)
   audio.play()
-  // stop sound after 3 seconds
+  // stop sound after 10 seconds
   setTimeout(() => {
     audio.pause()
-  }, 3000)
+  }, 5000)
 }
 
 // play a sound when a notification is received
@@ -71,7 +71,7 @@ form.addEventListener("submit", (e) => {
     const formData = { expirydata, phonenumber, csv}
 
     console.log(formData)
-    
+
     // send fetch request
     // const headers = {
     //   'Content-Type': 'text/html',
