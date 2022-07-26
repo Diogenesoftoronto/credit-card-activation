@@ -1,46 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.5.1/css/bulma.min.css"/>
-  <script defer src="notification.js" ></script>
-  <title>Connex Credit</title>
-</head>
-<body>
-  <section class="hero is-medium is-success ">
-    <div class="hero-body">
-      <p class="title">
-        Connex Credit Activation Portal
-      </p>
-     <p class="subtitle">
-        bringing you credit cards at 🌩️blazingly🌩️ fast speeds
-      </p> 
-    </div>
-  </section>
-  <h1 class="box medium title">Credit Activation Form</h1>
-  <section class="section is-small">
-    <form id="form" class="activation-form box" method="post" action="/activation">
-    <label class="column label" for="cardnumber">Card Number:</label>
-    <input class="column input" type="number" name="cardnumber" required>
-    <label class="column label" for="csv">CSV:</label>
-    <input class="column input" type="number" name="csv" required>
-    <label class="column label" for="expirydata">Expiry Date:</label>
-    <input class="column input" type="number" required name="expirydata">
-    <label class="column label" for="phonenumber">Phone Number:</label>
-    <input class="column input" type="tel" required name="phonenumber">
-    <input class="submit button is-primary m-3" type="submit" id="help" value="Activate">
-  </form>
-  </section>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.5.1/css/bulma.min.css"
+    />
+    <script defer src="notification.js"></script>
+    <script defer src="formValidation.js"></script>
+    <title>Connex Credit</title>
+  </head>
+  <body>
+    <section class="hero is-medium is-success">
+      <div class="hero-body">
+        <p class="title">Connex Credit Activation Portal</p>
+        <p class="subtitle">
+          bringing you credit cards at 🌩️blazingly🌩️ fast speeds
+        </p>
+      </div>
+    </section>
+    <h1 class="box medium title">Credit Activation Form</h1>
+    <section class="section is-small">
+      <form
+        id="form"
+        class="activation-form box"
+        method="post"
+        action="/activation"
+      >
+        <label class="column label" for="cardnumber">Card Number:</label>
+        <input
+          class="column input cardnumber"
+          minlength="16"
+          maxlength="16"
+          type="tel"
+          name="cardnumber"
+          pattern="[\d]+"
+          required
+        />
+        <label class="column label" for="csv">CSV:</label>
+        <input
+          class="column input csv"
+          minlength="3"
+          maxlength="3"
+          type="tel"
+          name="csv"
+          pattern="[0-9]+"
+          required
+        />
+        <label class="column label" for="expirydata">Expiry Date:</label>
+        <input
+          class="column input expirydata"
+          name="expirydata"
+          type="tel"
+          minlength="4"
+          maxlength="4"
+          <!-- pattern="[0-9]{4}" -->
+          required
+        />
+        <label class="column label" for="phonenumber">Phone Number:</label>
+        <input
+          class="column"
+          name="phonenumber"
+          minlength="10"
+          maxlength="10"
+          type="tel"
+          required
+        />
+        <input
+          class="submit button is-primary m-3"
+          type="submit"
+          value="Activate"
+        />
+      </form>
+    </section>
 
-  <footer class="footer">
-    <div class="content has-text-centered">
-      <p>
-        <strong>Connex Credit Activation Portal</strong> by <a href="https://jgthms.com">Diogenes of Toronto</a>. The source code is licensed
-        <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. 
-      </p>
-    </div>
-  </footer>
-</body>
+    <footer class="footer">
+      <div class="content has-text-centered">
+        <p>
+          <strong>Connex Credit Activation Portal</strong> by
+          <a href="https://jgthms.com">Diogenes of Toronto</a>. The source code
+          is licensed
+          <a href="http://opensource.org/licenses/mit-license.php">MIT</a>.
+        </p>
+      </div>
+    </footer>
+  </body>
 </html>

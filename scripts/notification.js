@@ -67,9 +67,11 @@ form.addEventListener("submit", (e) => {
     const csv = data.get("csv")
     const expirydata = data.get("expirydata")
     const phonenumber = data.get("phonenumber")
-
+   
     const formData = { expirydata, phonenumber, csv}
-    // console.log(formData)
+
+    console.log(formData)
+    
     // send fetch request
     // const headers = {
     //   'Content-Type': 'text/html',
