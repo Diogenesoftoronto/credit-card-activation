@@ -49,6 +49,7 @@ const BASE_URL = window.location.href
 
 // select elements
 const form = document.querySelector('#form')
+const submitButton = document.querySelector('input.submit')
 // console.log(form)
 
 // add event listener on submit
@@ -57,7 +58,10 @@ form.addEventListener("submit", (e) => {
 
   Notification.permission == 'denied' ? console.log('please allow notifications')
   : e.preventDefault()
-
+  // change the button to display the loading spinner
+  submitButton.setAttribute('disabled')
+  submitButton.setAttribute('class', 'is-loading')
+  // get the form data
   if (Notification.permission !== 'denied') {
     // request permission for notifications
     Notification.requestPermission().then(function (permission) {
@@ -69,15 +73,10 @@ form.addEventListener("submit", (e) => {
     const phonenumber = data.get("phonenumber")
    
     const formData = { expirydata, phonenumber, csv}
-
+    
     console.log(formData)
 
-    // send fetch request
-    // const headers = {
-    //   'Content-Type': 'text/html',
-    //   // normally authkey would be hidden with env however to do this would require the request to be made off the browser or to another api which I do have! i can make the request to activation route which can send me a response!
-    //   // 'Authkey': '<3',
-    // };
+    // send fetch request to server
     fetch(BASE_URL+'notifications', { method: 'post', body: formData })
     .then((response) => response.json())
     .then((data)=> {
@@ -99,6 +98,8 @@ form.addEventListener("submit", (e) => {
         icon: 'images/giphy.gif'
         })
       }
+      submitButton.classList.remove("is-loading")
+      submitButton.removeAttribute('disabled')
     })
     .catch((err)=>{
       // spawn notification
@@ -109,7 +110,10 @@ form.addEventListener("submit", (e) => {
           body: `Your credit card: ${cardnumber} has not been activated due to error ${err}`,
           icon: 'images/giphy.gif'
           })
-    }})
+    }
+    submitButton.classList.remove("is-loading")
+    submitButton.removeAttribute('disabled')
+  })
     .finally(()=>console.log("i forgot the notification functionality and i am adding this last minute. here's some emojis if you are reading this 🕺👯🕺"))
     })
   }
