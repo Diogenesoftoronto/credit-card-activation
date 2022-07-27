@@ -3,6 +3,7 @@ const express = require("express");
 require("dotenv").config();
 const axios = require("axios");
 const path = require("path");
+const { body, validationResult } = require('express-validator');
 // const logger = require('morgan');
 const serveStatic = require("serve-static");
 
@@ -51,32 +52,106 @@ async function isCardActivated(req, data) {
     return ["failure.ejs", values];
   }
 }
+
+// post route for activating the credit from the form data on the index
+app.post("/activation", 
+body("cardnumber")
+  .isInt({ allow_leading_zeroes: true, min: 16, max: 16 })
+  .withMessage("Card number must be 16 digits long"),
+  body("csv")
+  .isInt({ allow_leading_zeroes: true, min: 3, max: 3 })
+  .withMessage("CSV must be 3 digits long"),
+  body("expirydata")
+  .isInt({ allow_leading_zeroes: true, min: 4, max: 4 })
+  .withMessage("Expiry date must be 4 digits long"),
+  body("phonenumber")
+  .isInt({ min: 10, max: 10 })
+  .withMessage("Phone number must be 10 digits long"),
+(req, res) => {
+      // Finds the validation errors in this request and wraps them in an object with handy functions
+      const errors = validationResult(req);
+      if (!errors.isEmpty()) {
+        return res.status(400).render('failure.ejs' , { cardnumber: req.body.cardnumber,
+          csv: req.body.csv,
+          expirydata: req.body.expirydata,
+          phonenumber: req.body.phonenumber, errors: errors.array() });
+      }
+  
+        const validated = {
+        cardnumber: req.body.cardnumber,
+        csv: req.body.csv,
+        expirydata: req.body.expirydata,
+        phonenumber: req.body.phonenumber,
+      }
+        const data = JSON.stringify(validated);
+        console.log(Object.keys(req), req.body, va);
+        const returned = isCardActivated(req, data);
+        returned.then((result) => {
+          const [template, values] = result;
+          res.render(template, values);
+        });
+    }
+  );
+
+
+
+
+app.use(express.json());
+// add server side validation for the form with express-validator
+app.post(
+  '/notifications',
+  body("cardnumber")
+  .isLength({ allow_leading_zeroes: true, min: 16, max: 16 })
+  .withMessage("Card number must be 16 digits long"),
+  body("csv")
+  .isLength({ allow_leading_zeroes: true, min: 3, max: 3 })
+  .withMessage("CSV must be 3 digits long"),
+  body("expirydata")
+  .isLength({ min: 4, max: 4 })
+  .withMessage("Expiry date must be 4 digits long"),
+  body("phonenumber")
+  .isLength({ min: 10, max: 10 })
+  .withMessage("Phone number must be 10 digits long"),
+  (req, res) => {
+    // Finds the validation errors in this request and wraps them in an object with handy functions
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      console.error(req.body, errors);
+      return res.status(400).json({ errors: errors.array() });
+    }
+
+      const validated ={
+      cardnumber: req.body.cardnumber,
+      csv: req.body.csv,
+      expirydata: req.body.expirydata,
+      phonenumber: req.body.phonenumber,
+    }
+      const data = JSON.stringify(validated);
+      console.log(data);
+      const returned = isCardActivated(req, data);
+      returned.then((result) => {
+        const [, values] = result;
+        res.json(values);
+      })
+    
+  }
+);
 // home route for form page
 app.get("/", (req, res) => {
   res.render("index.ejs");
 });
-// post route for activating the credit from the form data on the index
-app.post("/activation", (req, res) => {
-  const data = JSON.stringify(req.body);
-  console.log(Object.keys(req), req.body);
-  const returned = isCardActivated(req, data);
-  returned.then((result) => {
-    const [template, values] = result;
-    res.render(template, values);
-  });
-});
 
-app.use(express.json());
+
 // post route for notifications
-app.post("/notifications", (req, res) => {
-  const data = JSON.stringify(req.body);
-  console.log(data);
-  const returned = isCardActivated(req, data);
-  returned.then((result) => {
-    const [, values] = result;
-    res.json(values);
-  });
-});
+// app.post("/notifications", (req, res) => {
+//   const data = JSON.stringify(req.body);
+//   console.log(data);
+//   const returned = isCardActivated(req, data);
+//   returned.then((result) => {
+//     const [, values] = result;
+//     res.json(values);
+//   });
+// });
 
 
 
