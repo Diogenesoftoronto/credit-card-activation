@@ -88,6 +88,7 @@ form.addEventListener("submit", (e) => {
       }})
         .then((response) => response.json())
         .then((data) => {
+          console.log(data);
           // spawn notification from request if granted permission
           if (Notification.permission == "granted") {
             // play two different sounds depending on the response from the server
@@ -98,9 +99,9 @@ form.addEventListener("submit", (e) => {
             }
             spawnNotification("Credit Card Status", {
               body: `Your credit card: ****-****-****-${cardnumber.substr(-4)}. 
-              Your ${data.message}. 
-              response code: ${data.responsecode}. 
-              status: ${data.status}.`,
+              Your ${data.message || data.errors[0].msg}. 
+              response code: ${data.responsecode || 101}. 
+              status: ${data.status || 400}.`,
               icon: "images/giphy.gif",
             });
           }
@@ -108,6 +109,7 @@ form.addEventListener("submit", (e) => {
           submitButton.removeAttribute("disabled");
         })
         .catch((err) => {
+          console.log(err);
           // spawn notification
           if (Notification.permission === "granted") {
             // play sound when a new notification is spawned
