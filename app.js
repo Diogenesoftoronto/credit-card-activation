@@ -56,16 +56,16 @@ async function isCardActivated(req, data) {
 // post route for activating the credit from the form data on the index
 app.post("/activation", 
 body("cardnumber")
-  .isInt({ allow_leading_zeroes: true, min: 16, max: 16 })
+  .isLength({ allow_leading_zeroes: true, min: 16, max: 16 })
   .withMessage("Card number must be 16 digits long"),
   body("csv")
-  .isInt({ allow_leading_zeroes: true, min: 3, max: 3 })
+  .isLength({ allow_leading_zeroes: true, min: 3, max: 3 })
   .withMessage("CSV must be 3 digits long"),
   body("expirydata")
-  .isInt({ allow_leading_zeroes: true, min: 4, max: 4 })
+  .isLength({ allow_leading_zeroes: true, min: 4, max: 4 })
   .withMessage("Expiry date must be 4 digits long"),
   body("phonenumber")
-  .isInt({ min: 10, max: 10 })
+  .isLength({ min: 10, max: 10 })
   .withMessage("Phone number must be 10 digits long"),
 (req, res) => {
       // Finds the validation errors in this request and wraps them in an object with handy functions
